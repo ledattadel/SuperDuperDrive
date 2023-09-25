@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.249 s <<< FAILURE! - in com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests
+com.udacity.jwdnd.course1.cloudstorage.CloudStorageApplicationTests  Time elapsed: 0.247 s  <<< ERROR!
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: file [/home/dat/Desktop/project/cloudstorage/target/test-classes/com/udacity/jwdnd/course1/cloudstorage/CloudStorageApplicationTests.class]; nested exception is org.springframework.core.NestedIOException: ASM ClassReader failed to parse class file - probably due to a new Java class file version that isn't supported yet: file [/home/dat/Desktop/project/cloudstorage/target/test-classes/com/udacity/jwdnd/course1/cloudstorage/CloudStorageApplicationTests.class]; nested exception is java.lang.IllegalArgumentException: Unsupported class file major version 61
+Caused by: org.springframework.core.NestedIOException: ASM ClassReader failed to parse class file - probably due to a new Java class file version that isn't supported yet: file [/home/dat/Desktop/project/cloudstorage/target/test-classes/com/udacity/jwdnd/course1/cloudstorage/CloudStorageApplicationTests.class]; nested exception is java.lang.IllegalArgumentException: Unsupported class file major version 61
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 61
+
