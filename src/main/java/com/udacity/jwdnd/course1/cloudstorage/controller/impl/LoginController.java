@@ -16,6 +16,9 @@ public class LoginController implements ILoginController {
     public String showLoginForm(@ModelAttribute("signupSuccess") String signupSuccess, Model model) {
         if ("true".equals(signupSuccess)) {
             model.addAttribute("signupSuccess", true);
+        }else {
+            model.addAttribute("signupSuccess", false);
+
         }
 
         return "login";

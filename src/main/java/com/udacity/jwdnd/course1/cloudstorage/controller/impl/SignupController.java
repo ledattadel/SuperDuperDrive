@@ -33,17 +33,24 @@ public class SignupController implements ISignupController {
 
     @PostMapping()
     public String processSignup(@ModelAttribute User user, Model model, RedirectAttributes redirectAttributes) {
-        String errorMessage = validateUser(user);
 
-        if (errorMessage == null) {
-            int rowsAffected = userService.createUser(user);
-            errorMessage = handleUserCreationResult(rowsAffected);
-            if (errorMessage == null) {
+        String signupError = null;
+
+        if (!userService.isUsernameAvailable(user.getUsername())) {
+            signupError = "The username is not available.";
+        }
+
+        if (signupError == null) {
+            int rowsAdded = userService.createUser(user);
+            if (rowsAdded < 0) {
+                signupError = "There was an error signing you up. Please try again.";
+            } else {
                 redirectAttributes.addFlashAttribute("signupSuccess", true);
                 return "redirect:/login";
             }
+        } else {
+            model.addAttribute("signupError", signupError);
         }
-        redirectAttributes.addFlashAttribute("signupError", errorMessage);
 
         return showSignupView();
     }
@@ -52,19 +59,8 @@ public class SignupController implements ISignupController {
         return "signup";
     }
 
-    private String validateUser(User user) {
-        if (!userService.isUsernameAvailable(user.getUsername())) {
-            return "The username you chose is already taken. Please choose a different one.";
-        }
-        return null;
-    }
 
-    private String handleUserCreationResult(int rowsAffected) {
-        if (rowsAffected < 1) {
-            return "We encountered an issue while signing you up. Please try again later.";
-        }
-        return null;
-    }
+
 
     private void addModelAttributesAndRedirect(Model model, String errorMessage) {
         if (errorMessage == null) {
